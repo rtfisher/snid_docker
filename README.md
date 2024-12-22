@@ -14,6 +14,10 @@
    - Install the package and restart your computer after installation
    - XQuartz is required for GUI applications in the Docker container
 
+3. **SNID and Template Library**
+   - Download the gzipped tarballs snid-5.0.tar.gz and templates-2.0.tgz from Stephane Blondin's website [https://people.lam.fr/blondin.stephane/software/snid/]. Store these in the same local working directory where you have installed these Docker files.
+
+   
 ### XQuartz Setup
 
 1. Launch the local Docker app and XQuartz
