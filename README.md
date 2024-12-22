@@ -5,14 +5,10 @@
 ### Required Software
 
 1. **Docker Desktop**
-   - Download from [Docker's official website](https://docs.docker.com/get-started/get-docker/)
-   - Follow the installation instructions for your operating system
-   - After installation, launch Docker Desktop and wait for it to fully start
+   - Download and install from [Docker's official website](https://docs.docker.com/get-started/get-docker/)
 
 2. **XQuartz**
-   - Download from [XQuartz's official website](https://www.xquartz.org)
-   - Install the package and restart your computer after installation
-   - XQuartz is required for GUI applications in the Docker container
+   - Download and install from [XQuartz's official website](https://www.xquartz.org)
 
 3. **SNID and Template Library**
    - Download the gzipped tarballs snid-5.0.tar.gz and templates-2.0.tgz from Stephane Blondin's website [https://people.lam.fr/blondin.stephane/software/snid/]. Store these in the same local working directory where you have installed these Docker files.
