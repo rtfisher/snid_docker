@@ -4,10 +4,10 @@ This short Docker file uses a containerized approach to easily enable running th
 
 _References:_
 
-Determining the Type, Redshift, and Age of a Supernova Spectrum 
+"Determining the Type, Redshift, and Age of a Supernova Spectrum" 
 Blondin, S. & Tonry, J. L. 2007. ApJ, 666, 1024
 
-A survey of galaxy redshifts. I - Data reduction techniques 
+"A survey of galaxy redshifts. I - Data reduction techniques"
 Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
 
 # Running Instructions
