@@ -1,6 +1,6 @@
 # SNID-Docker
 
-This short Docker file uses a containerized approach to easily enable running the SuperNova IDentification code (Blondin & Tonry, 2007, Tonry & Davis, 1979) on any platform. The requisite PGPLOT library including the X-Windows interface is automatically downloaded and installed inside a Linux container. SNID is configured and built on top of PGPLOT. The container hosts an X11 server which the user can easily connect to via a local X11 client on their desktop. All of this is accomplished by executing a single script.
+This short Docker file uses a containerized approach to easily enable running the SuperNova IDentification code (Blondin & Tonry, 2007, Tonry & Davis, 1979) on any platform. The requisite PGPLOT library including the X-Windows interface is automatically downloaded and installed inside a Linux container. SNID is configured and built on top of PGPLOT. The container hosts an X11 server which the user can easily connect to via a local X11 client on their desktop. All of this is accomplished by executing a single script,
 
 _References:_
 Determining the Type, Redshift, and Age of a Supernova Spectrum 
@@ -45,6 +45,12 @@ All of the necessary commands to build and run the Docker container are automate
 ```bash
 ./run_snid.sh
 ```
+
+You will be dropped into the container. To verify SNID is functioning correctly, you can run
+
+```./snid examples/sn2003jo.dat ```
+
+An interactive window should display.
 
 ## Manual Container Building and Launching
 
