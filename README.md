@@ -1,6 +1,6 @@
 # SNID-Docker
 
-This short Docker file uses a containerized approach to easily enable running the SuperNova IDentification code (Blondin & Tonry, 2007, Tonry & Davis, 1979) on any platform. The requisite PGPLOT library including the X-Windows interface is automatically downloaded and installed inside a Linux container. SNID is configured and built on top of PGPLOT. The container hosts an X11 server which the user can easily connect to via a local X11 client on their desktop. All of this is accomplished by executing a single script,
+This short Docker file uses a containerized approach to easily enable running the SuperNova IDentification code (Blondin & Tonry, 2007, Tonry & Davis, 1979) on any platform. The requisite PGPLOT library including the X-Windows interface is automatically downloaded and installed inside a Linux container. SNID is configured and built on top of PGPLOT. The container hosts an X11 server which the user can easily connect to via a local X11 client on their desktop. All of this is accomplished by executing a single script, `run_snid.sh`.
 
 _References:_
 
@@ -37,7 +37,6 @@ Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
    You should see:
    ```
    access control enabled, only authorized clients can connect
-   127.0.0.1 being added to access control list
    ```
 
 ## Quick Start
