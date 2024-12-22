@@ -1,6 +1,6 @@
 # Running Instructions
 
-## Prerequisites
+## Prerequisites (for OS/X)
 
 ### Required Software
 
