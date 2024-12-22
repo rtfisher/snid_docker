@@ -28,14 +28,16 @@
    127.0.0.1 being added to access control list
    ```
 
-## Installation and Running
+## Quick Start
 
-**Quick Start**: All the following commands are automated in the bash script `run_snid.sh`. Simply run:
+All of the necessary commands to build and run the Docker container are automated in the bash script `run_snid.sh`. Simply run:
 ```bash
 ./run_snid.sh
 ```
 
-If you prefer to run the commands manually, follow these steps:
+## Manual Container Building and Launching
+
+If you prefer to build and launch the container by hand, follow these steps:
 
 1. Allow Docker to Connect to XQuartz:
    ```bash
