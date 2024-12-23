@@ -90,13 +90,9 @@ The X11 configuration process is straightforward, but differs depending on your 
 
 2. **Configure X11 Server Permissions**
 
-   - Allow connections from Docker containers. On macOS and Windows:
+   - Allow loopback connections from Docker containers:
      ```bash
      xhost + 127.0.0.1
-     ```
-     On Linux:
-     ```bash
-     xhost + local
      ```
 
 3. **Verify the Setup**
@@ -109,7 +105,6 @@ The X11 configuration process is straightforward, but differs depending on your 
      access control enabled, only authorized clients can connect
      127.0.0.1 being added to access control list
      ```
-     Or ```local``` in place of ```127.0.0.1``` on Linux.
 
 
 ## Quick Start
@@ -136,7 +131,7 @@ An interactive window similar to the one above should display.
 
 If you prefer to build and launch the container by hand, follow these steps:
 
-1. Allow Docker to Connect to XQuartz:
+1. Allow Docker to connect to X11 client via loopback:
    ```bash
    xhost + 127.0.0.1
    ```
