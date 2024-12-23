@@ -40,5 +40,6 @@ echo "Running Docker container 'snid-app'..."
 docker run -it --rm \
     -e DISPLAY=host.docker.internal:0 \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v ~/Desktop/snid:/home/sniduser/snid-5.0/desktop \
     snid-app
 
