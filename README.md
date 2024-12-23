@@ -87,7 +87,7 @@ If you prefer to build and launch the container by hand, follow these steps:
 
 ## General Notes on Docker
 
-### Credential Store Issues
+### Credential Store Known Issue
 
 If you encounter the error message:
 ```
