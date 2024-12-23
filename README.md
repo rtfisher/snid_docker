@@ -27,7 +27,12 @@ Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
 3. **An X11 Client** 
    - MacOS: Download and install [XQuartz](https://www.xquartz.org).
    - Windows: Download and install either [VcXsrv](https://vcxsrv.com/), [XMing](https://sourceforge.net/projects/xming/), or [Cygwin/X](https://cygwin.com/install.html). Note Cygwin/X is part of the larger Cygwin project.
-   - Linux: 
+   - Linux: X11 is installed as part of most Linux distros. You can confirm using the relevant package manager on your system, for example:
+   -   ```dpkg -l | grep xorg```(Debian/Ubuntu)
+   -   ```rpm -qa | grep xorg``` (Red Hat/CentOS/Fedora)
+   -   ```pacman -Qs xorg``` (Arch Linux)
+   -   ```zypper search --installed-only xorg``` (openSUSE)
+
 
 4. **This Github Repo**
    - In the terminal, run ```git clone https://github.com/rtfisher/snid_docker```.
