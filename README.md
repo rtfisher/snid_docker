@@ -35,18 +35,82 @@ Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
    
 ### X11 Configuration
 
-### XQuartz Setup
 
-1. Launch the local Docker app and XQuartz
-2. Ensure that "Allow connections from network clients" is enabled in XQuartz Preferences
-3. To verify the setup, run in XQuartz terminal:
-   ```bash
-   xhost
-   ```
-   You should see:
-   ```
-   access control enabled, only authorized clients can connect
-   ```
+
+#### macOS: XQuartz Setup
+
+1. **Launch Docker Desktop and XQuartz**
+   - Open the Docker Desktop application.
+   - Launch **XQuartz** from your Applications folder or via Spotlight search.
+   - In the menu bar, click on `XQuartz` → `Preferences`.
+   - Navigate to the `Security` tab.
+   - **Check** the box labeled **"Allow connections from network clients"**.
+   - **Apply** the changes and restart XQuartz if prompted.
+
+
+#### Windows: VcXsrv Setup
+
+1. **Launch Docker Desktop and VcXsrv**
+   - Open the Docker Desktop application.
+   - Launch **VcXsrv** using the **XLaunch** wizard:
+     - **Display Settings:**
+       - **Multiple windows**
+       - **Display number:** `0`
+     - **Client Startup:**
+       - **Start no client**
+     - **Additional Settings:**
+       - **Enable clipboard**
+       - **Enable OpenGL** (if required)
+     - **Finish** to start the server.
+
+
+#### Windows: Cygwin/X Setup
+
+#### Linux Setup
+
+1. **Launch Docker**
+   - Ensure that Docker is installed and running on your Linux distribution.
+   - Open your terminal and start Docker if it's not already running:
+     ```bash
+     sudo systemctl start docker
+     ```
+
+
+
+### Configuring X11 and Verifying X11 Setup
+
+
+3. **Configure X11 Server Permissions**
+
+   - Allow connections from Docker containers. On macOS and Windows:
+     ```bash
+     xhost + 127.0.0.1
+     ```
+     On Linux:
+     ```bash
+     xhost + local
+     ```
+
+5. **Verify the Setup**
+   - Run the following command to verify that permissions are correctly set:
+     ```bash
+     xhost
+     ```
+   - **Expected Output:**
+     ```
+     access control enabled, only authorized clients can connect
+     127.0.0.1 being added to access control list
+     ```
+     Or ```local``` in place of ```127.0.0.1``` on Linux.
+
+After configuring your X11 server and permissions, run your Docker container with the appropriate environment variables and volume mounts:
+
+```bash
+docker run -it --rm \
+    -e DISPLAY=host.docker.internal:0 \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    snid-app
+```
 
 ## Quick Start
 
