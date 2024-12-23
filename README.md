@@ -48,11 +48,18 @@ All of the necessary commands to build and run the Docker container are automate
 ./run_snid.sh
 ```
 
-You will be dropped into the container. To verify SNID is functioning correctly, you can run
+If all proceeds fine, you will see some output similar to 
+```
+Configuring XQuartz to allow connections from Docker...
+127.0.0.1 being added to access control list
+Running Docker container 'snid-app'...
+sniduser@4585bce060da:~/snid-5.0$
+```
+Following this, you will be dropped into the container. To verify SNID is functioning correctly, you can run
 
 ```./snid examples/sn2003jo.dat ```
 
-An interactive window should display.
+An interactive window similar to the one above should display.
 
 ## Manual Container Building and Launching
 
@@ -99,7 +106,7 @@ Fix by editing `~/.docker/config.json`, changing "credsStore" to "credStore":
 ### File Transfer
 
 #### Option 1: Using Mounted Directory
-The easiest way to transfer files from within the container back to the system is by using a directory mount. SNID-Docker mounts the container directory `desktop` to the directory `snid` on your system desktop. Any files you copy into the `desktop` folder in the container will automatically be copied to the `snid` folder and persist even after the Docker container is shut down.
+The easiest way to transfer files from within the container back to the system is by using a directory mount. SNID-Docker mounts the container directory `desktop` to the directory `snid` on your system desktop. Any files you copy into the `desktop` folder in the container will automatically be copied to the `snid` folder and persist even after the Docker container is shut down. Similarly, any system files which are copied to `snid` on your system desktop will automatically appear within the mounted `desktop` folder in the container.
 
 #### Option 2: Using Docker CP
 To copy files from a subdirectory in the container to your system desktop, you could run:
