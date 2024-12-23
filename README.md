@@ -19,15 +19,22 @@ Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
 ### Required Software
 
 1. **Docker Desktop**
-   - Download and install from [Docker's official website](https://docs.docker.com/get-started/get-docker/)
+   - Download and install [Docker](https://docs.docker.com/get-started/get-docker/)
 
-2. **XQuartz**
-   - Download and install from [XQuartz's official website](https://www.xquartz.org)
+2. **SNID and Template Library**
+   - Download the gzipped tarballs snid-5.0.tar.gz and templates-2.0.tgz from Stéphane Blondin's website [https://people.lam.fr/blondin.stephane/software/snid/]. Store these in the same local working directory where you have cloned this github repo.
+   
+3. **An X11 Client** 
+   - MacOS: Download and install [XQuartz](https://www.xquartz.org)
+   - Windows: Download and install either [VcXsrv](https://vcxsrv.com/), [XMing](https://sourceforge.net/projects/xming/), or [Cygwin/X](https://cygwin.com/install.html). Note Cygwin/X is part of the larger Cygwin project.
+   - Linux: 
 
-3. **SNID and Template Library**
-   - Download the gzipped tarballs snid-5.0.tar.gz and templates-2.0.tgz from Stéphane Blondin's website [https://people.lam.fr/blondin.stephane/software/snid/]. Store these in the same local working directory where you have installed these Docker files.
+4. **This Github Repo**
+   - In the terminal, run ```git clone https://github.com/rtfisher/snid_docker```.
 
    
+### X11 Configuration
+
 ### XQuartz Setup
 
 1. Launch the local Docker app and XQuartz
@@ -43,7 +50,7 @@ Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
 
 ## Quick Start
 
-All of the necessary commands to build and run the Docker container are automated in the bash script `run_snid.sh`. Simply run:
+All of the necessary commands to build and run the Docker container are automated in the bash script `run_snid.sh`. Simply open a terminal and cd to the directory storing this github repo and run:
 ```bash
 ./run_snid.sh
 ```
