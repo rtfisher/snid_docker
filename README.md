@@ -19,13 +19,13 @@ Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
 ### Required Software
 
 1. **Docker Desktop**
-   - Download and install [Docker](https://docs.docker.com/get-started/get-docker/)
+   - Download and install [Docker](https://docs.docker.com/get-started/get-docker/).
 
 2. **SNID and Template Library**
    - Download the gzipped tarballs snid-5.0.tar.gz and templates-2.0.tgz from Stéphane Blondin's website [https://people.lam.fr/blondin.stephane/software/snid/]. Store these in the same local working directory where you have cloned this github repo.
    
 3. **An X11 Client** 
-   - MacOS: Download and install [XQuartz](https://www.xquartz.org)
+   - MacOS: Download and install [XQuartz](https://www.xquartz.org).
    - Windows: Download and install either [VcXsrv](https://vcxsrv.com/), [XMing](https://sourceforge.net/projects/xming/), or [Cygwin/X](https://cygwin.com/install.html). Note Cygwin/X is part of the larger Cygwin project.
    - Linux: 
 
