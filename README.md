@@ -122,6 +122,7 @@ docker system prune -a -f
 ```
 
 #### Restarting Docker Daemon on OS/X
+Very rarely you may need to restart the Docker daemon. On OS/X:
 ```bash
 osascript -e 'quit app "Docker"'
 open /Applications/Docker.app
