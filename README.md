@@ -147,7 +147,10 @@ If you prefer to build and launch the container by hand, follow these steps:
 
 3. Launch the Docker container:
    ```bash
-   docker run -it --rm -e DISPLAY=host.docker.internal:0 snid-app
+     docker run -it --rm \
+         -e DISPLAY=$DISPLAY \
+         -v /tmp/.X11-unix:/tmp/.X11-unix \
+         snid-app
    ```
 
 4. After use, revoke X server permissions:
