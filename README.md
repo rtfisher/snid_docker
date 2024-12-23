@@ -35,6 +35,7 @@ Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
    
 ### X11 Configuration
 
+The X11 configuration process is straightforward, but differs depending on your operating system and X11 client.
 
 
 #### macOS: XQuartz Setup
@@ -66,6 +67,13 @@ Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
 
 #### Windows: Cygwin/X Setup
 
+1. **Launch Docker Desktop and Cygwin/X**
+   - Open the Docker Desktop application.
+   - Launch **Cygwin/X** by executing the `startx` command in the Cygwin terminal:
+     ```bash
+     startx
+     ```
+     
 #### Linux Setup
 
 1. **Launch Docker**
@@ -80,7 +88,7 @@ Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
 ### Configuring X11 and Verifying X11 Setup
 
 
-3. **Configure X11 Server Permissions**
+2. **Configure X11 Server Permissions**
 
    - Allow connections from Docker containers. On macOS and Windows:
      ```bash
@@ -91,7 +99,7 @@ Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
      xhost + local
      ```
 
-5. **Verify the Setup**
+3. **Verify the Setup**
    - Run the following command to verify that permissions are correctly set:
      ```bash
      xhost
