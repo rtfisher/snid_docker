@@ -14,7 +14,7 @@ Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
 
 # Running Instructions
 
-## Prerequisites (for OS/X)
+## Prerequisites 
 
 ### Required Software
 
