@@ -39,24 +39,21 @@ Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
    
 ### X11 Configuration
 
-The X11 configuration process is straightforward, but differs depending on your operating system and X11 client.
+The X11 configuration process is straightforward, but differs depending on your operating system and X11 client. Begin by launching the Docker application and your X11 client.
 
 
 #### macOS: XQuartz Setup
 
-1. **Launch Docker Desktop and XQuartz**
-   - Open the Docker Desktop application.
-   - Launch **XQuartz** from your Applications folder or via Spotlight search.
+1. **Configure XQuartz**
    - In the menu bar, click on `XQuartz` → `Preferences`.
    - Navigate to the `Security` tab.
    - **Check** the box labeled **"Allow connections from network clients"**.
    - **Apply** the changes and restart XQuartz if prompted.
 
 
-#### Windows: VcXsrv Setup
+#### Windows ####
 
-1. **Launch Docker Desktop and VcXsrv**
-   - Open the Docker Desktop application.
+Option 1. **VcXsrv**
    - Launch **VcXsrv** using the **XLaunch** wizard:
      - **Display Settings:**
        - **Multiple windows**
@@ -69,16 +66,14 @@ The X11 configuration process is straightforward, but differs depending on your 
      - **Finish** to start the server.
 
 
-#### Windows: Cygwin/X Setup
-
-1. **Launch Docker Desktop and Cygwin/X**
-   - Open the Docker Desktop application.
+Option 2. **Cygwin/X**
    - Launch **Cygwin/X** by executing the `startx` command in the Cygwin terminal:
      ```bash
      startx
      ```
+
      
-#### Linux Setup
+#### Linux ####
 
 1. **Launch Docker**
    - Ensure that Docker is installed and running on your Linux distribution.
