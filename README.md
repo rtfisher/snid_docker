@@ -103,14 +103,6 @@ Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
      ```
      Or ```local``` in place of ```127.0.0.1``` on Linux.
 
-After configuring your X11 server and permissions, run your Docker container with the appropriate environment variables and volume mounts:
-
-```bash
-docker run -it --rm \
-    -e DISPLAY=host.docker.internal:0 \
-    -v /tmp/.X11-unix:/tmp/.X11-unix \
-    snid-app
-```
 
 ## Quick Start
 
