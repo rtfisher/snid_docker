@@ -1,6 +1,6 @@
 # SNID-Docker
 
-This short Docker file uses a containerized approach to easily enable running the SuperNova IDentification code (Blondin & Tonry, 2007, Tonry & Davis, 1979) on any platform. The requisite PGPLOT library including the X-Windows interface is automatically downloaded and installed inside a Linux container. SNID is configured and built on top of PGPLOT. The container hosts an X11 server which the user can easily connect to via a local X11 client on their desktop. All of this is accomplished by executing a single script, `run_snid.sh`, which automatically detects system architecture and launches Docker and the X11 client. 
+This short Docker file uses a containerized approach to easily enable running the SuperNova IDentification code (Blondin & Tonry, 2007, Tonry & Davis, 1979) on any platform. The requisite PGPLOT library including the X-Windows interface is automatically downloaded and installed inside a Linux container. SNID is configured and built on top of PGPLOT. The container hosts an X11 client which the user can easily connect to via a local X11 server on their desktop. All of this is accomplished by executing a single script, `run_snid.sh`, which automatically detects system architecture and launches Docker and the X11 server. 
 
 ![SNID Docker Running on OS/X.](/_images/snid_sn2003jo.png)
 
@@ -36,10 +36,30 @@ Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
 4. **This Github Repo**
    - In the terminal, run ```git clone https://github.com/rtfisher/snid_docker```.
 
+## Quick Start
+
+All of the necessary commands to build and run the Docker container are automated in the bash script `run_snid.sh`. Simply open a terminal and cd to the directory storing this github repo and run:
+```bash
+./run_snid.sh
+```
+
+If all proceeds fine, you will see some output similar to 
+```
+Configuring XQuartz to allow connections from Docker...
+127.0.0.1 being added to access control list
+Running Docker container 'snid-app'...
+sniduser@4585bce060da:~/snid-5.0$
+```
+Following this, you will be dropped into the container. To verify SNID is functioning correctly, you can run
+
+```./snid examples/sn2003jo.dat ```
+
+An interactive window similar to the one above should display. If any issues arise, you should follow through the X11 configuration steps below.
+
    
 ### X11 Configuration
 
-The X11 configuration process is straightforward, but differs depending on your operating system and X11 client. Begin by launching the Docker application and your X11 client.
+The X11 configuration process is straightforward, but differs depending on your operating system and X11 implementation. Begin by launching the Docker application and your X11 server.
 
 
 #### macOS: XQuartz Setup
@@ -105,26 +125,6 @@ Option 2. **XMing or Cygwin/X**
      127.0.0.1 being added to access control list
      ```
 
-
-## Quick Start
-
-All of the necessary commands to build and run the Docker container are automated in the bash script `run_snid.sh`. Simply open a terminal and cd to the directory storing this github repo and run:
-```bash
-./run_snid.sh
-```
-
-If all proceeds fine, you will see some output similar to 
-```
-Configuring XQuartz to allow connections from Docker...
-127.0.0.1 being added to access control list
-Running Docker container 'snid-app'...
-sniduser@4585bce060da:~/snid-5.0$
-```
-Following this, you will be dropped into the container. To verify SNID is functioning correctly, you can run
-
-```./snid examples/sn2003jo.dat ```
-
-An interactive window similar to the one above should display.
 
 ## Manual Container Building and Launching
 
