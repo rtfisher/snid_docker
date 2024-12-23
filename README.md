@@ -162,7 +162,7 @@ If you encounter the error message:
 error getting credentials - err: exec: "docker-credential-desktop": executable file not found in $PATH, out: 
 ```
 
-Fix by editing `~/.docker/config.json`, changing "credsStore" to "credStore":
+This is a known issue which you can easily fix by editing `~/.docker/config.json`, changing "credsStore" to "credStore":
 ```json
 {
     "credStore": "desktop"
