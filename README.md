@@ -99,14 +99,14 @@ Fix by editing `~/.docker/config.json`, changing "credsStore" to "credStore":
 ### File Transfer
 
 #### Option 1: Using Mounted Directory
-Use a mounted subdirectory in the run command (preferred method).
+The easiest way to transfer files from within the container back to the system is by using a directory mount. SNID-Docker mounts the container directory `desktop` to the directory `snid` on your system desktop. Any files you copy into the `desktop` folder in the container will automatically be copied to the `snid` folder and persist even after the Docker container is shut down.
 
 #### Option 2: Using Docker CP
-To copy files from the container to your system:
+To copy files from a subdirectory in the container to your system desktop, you could run:
 ```bash
 docker cp snid-container:/home/sniduser/figures ~/Desktop/
 ```
-Note: `docker cp` does not accept wildcards ("*"). Organize files in directories for easier transfer.
+Here the folder `figures` is being copied from the home directory of the container. Note: `docker cp` does not accept wildcards ("*"). Organize files in directories for easier transfer.
 
 ### Cleanup and Management
 
