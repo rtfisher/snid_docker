@@ -26,7 +26,7 @@ Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
    
 3. **An X11 Client** 
    - MacOS: Download and install [XQuartz](https://www.xquartz.org).
-   - Windows: Download and install either [VcXsrv](https://vcxsrv.com/), [XMing](https://sourceforge.net/projects/xming/), or [Cygwin/X](https://cygwin.com/install.html). Note Cygwin/X is part of the larger Cygwin project.
+   - Windows: Download and install either [VcXsrv](https://vcxsrv.com/), [XMing](https://sourceforge.net/projects/xming/), or [Cygwin/X](https://cygwin.com/install.html). Note Cygwin/X is part of the larger Cygwin project. You will also need a command line terminal -- either WSL, Git Bash, or Cygwin. 
    - Linux: X11 is installed as part of most Linux distros. You can verify by simply typing ```startx``` in a terminal. If X11 is not installed, you can install it using the relevant package manager on your system. For example:
       - ```sudo apt install xorg```(Debian/Ubuntu)
       - ```sudo dnf install xorg-x11-server-Xorg xorg-x11-xinit xorg-x11-apps``` (Red Hat/CentOS/Fedora)
@@ -66,8 +66,8 @@ Option 1. **VcXsrv**
      - **Finish** to start the server.
 
 
-Option 2. **Cygwin/X**
-   - Launch **Cygwin/X** by executing the `startx` command in the Cygwin terminal:
+Option 2. **XMing or Cygwin/X**
+   - Launch **XMing** or **Cygwin/X** by executing the `startx` command in the WSL, Git Bash, or Cygwin terminal:
      ```bash
      startx
      ```
