@@ -152,11 +152,20 @@ docker build -t snid-app --progress=plain -f snid_dockerfile .
 # Run the Docker container with X11 forwarding
 echo "Running Docker container 'snid-app'..."
 
+# Add optional volume mount for local data
+CMD=""
+
+if [ -n "$1" ]; then
+  CMD+="-v $1:/home/sniduser/snid-5.0/localmount"
+fi
+
+
 docker run -it --rm \
     --name snid-container \
     -e DISPLAY=host.docker.internal:0 \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -v ~/Desktop/snid:/home/sniduser/snid-5.0/desktop \
+    -v ~/Desktop/snid:/home/sniduser/snid-5.0/desktop  \
+    $CMD \
     snid-app
 
 # Cleanup will be called automatically due to the trap

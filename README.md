@@ -29,7 +29,7 @@ The current implementation has been verified on macOS Intel and Silicon, but has
    - Download the gzipped tarballs snid-5.0.tar.gz and templates-2.0.tgz from Stéphane Blondin's website [https://people.lam.fr/blondin.stephane/software/snid/]. Store these in the same local working directory where you have cloned this github repo.
    
 3. **An X11 Client** 
-   - MacOS: Download and install [XQuartz](https://www.xquartz.org).
+   - MacOS: Download and install [XQuartz](https://www.xquartz.org). **You must completely restart your computer after installing XQuartz before proceeding.**
    - Windows: Download and install either [VcXsrv](https://vcxsrv.com/), [XMing](https://sourceforge.net/projects/xming/), or [Cygwin/X](https://cygwin.com/install.html). Note Cygwin/X is part of the larger Cygwin project. You will also need a command line terminal -- either WSL, Git Bash, or Cygwin. 
    - Linux: X11 is installed as part of most Linux distros. You can verify by simply typing ```startx``` in a terminal. If X11 is not installed, you can install it using the relevant package manager on your system. For example:
       - ```sudo apt install xorg```(Debian/Ubuntu)
@@ -60,6 +60,13 @@ Following this, you will be dropped into the container. To verify SNID is functi
 
 An interactive window similar to the one above should display. If any issues arise, you should follow through the X11 configuration steps below.
 
+You can optionally mount a local directory to the container to transfer files in and out. For example, to mount the directory `/path/to/local/data` to the container, run:
+
+```bash
+./run_snid.sh /path/to/local/data
+```
+
+The container will automatically copy the contents of the local directory to the container directory `/home/sniduser/snid-5.0/localmount`. You can then access these files from within the container.
    
 ### X11 Configuration
 
