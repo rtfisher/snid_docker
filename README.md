@@ -122,17 +122,17 @@ Option 2. **XMing or Cygwin/X**
 
 
 
-### Configuring X11 and Verifying X11 Setup
+### Configuring X11 and Verifying X11 Setup on macOS, Linux, WSL, Git Bash, or Cygwin terminal
 
 
-2. **Configure X11 Server Permissions**
+1. **Configure X11 Server Permissions**
 
    - Allow loopback connections from Docker containers:
      ```bash
      xhost + 127.0.0.1
      ```
 
-3. **Verify the Setup**
+2. **Verify the Setup**
    - Run the following command to verify that permissions are correctly set:
      ```bash
      xhost
