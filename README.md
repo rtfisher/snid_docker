@@ -114,6 +114,11 @@ Option 2. **XMing or Cygwin/X**
      ```bash
      sudo systemctl start docker
      ```
+2. **Share X11-unix path to Docker**
+   - Launch Docker
+   - Navigate to to `Settings` → `Resources` → `File sharing`.
+   - In the `Virtual file shares` section, add the following path: '/tmp/.X11-unix'
+   - Apply and restart the docker
 
 
 
