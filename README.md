@@ -32,7 +32,7 @@ Initial implementation by Robert Fisher, with contributions from Robert D. Stein
    
 3. **An X11 Client** 
    - MacOS: Download and install [XQuartz](https://www.xquartz.org). **You must completely restart your computer after installing XQuartz before proceeding.**
-   - Windows: Download and install either [VcXsrv](https://vcxsrv.com/), [XMing](https://sourceforge.net/projects/xming/), or [Cygwin/X](https://cygwin.com/install.html). Note Cygwin/X is part of the larger Cygwin project. You will also need a command line terminal -- either WSL, Git Bash, or Cygwin. 
+   - Windows: Download and install either [XMing](https://sourceforge.net/projects/xming/), [Cygwin/X](https://cygwin.com/install.html), or [VcXsrv](https://vcxsrv.com/). Note Cygwin/X is part of the larger Cygwin project. You will also need a command line terminal -- either WSL, Git Bash, or Cygwin. Also NB: VcVsrv seems to generate an odd color palate for SNID's graphics, but XMing seems to work fine.
    - Linux: X11 is installed as part of most Linux distros. You can verify by simply typing ```startx``` in a terminal. If X11 is not installed, you can install it using the relevant package manager on your system. For example:
       - ```sudo apt install xorg```(Debian/Ubuntu)
       - ```sudo dnf install xorg-x11-server-Xorg xorg-x11-xinit xorg-x11-apps``` (Red Hat/CentOS/Fedora)
