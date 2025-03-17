@@ -86,7 +86,13 @@ The X11 configuration process is straightforward, but differs depending on your 
 
 #### Windows ####
 
-Option 1. **VcXsrv**
+Option 1. **XMing or Cygwin/X**
+   - Launch **XMing** or **Cygwin/X** by executing the `startx` command in the WSL, Git Bash, or Cygwin terminal:
+     ```bash
+     startx
+     ```
+
+Option 2. **VcXsrv**
    - Launch **VcXsrv** using the **XLaunch** wizard:
      - **Display Settings:**
        - **Multiple windows**
@@ -97,14 +103,6 @@ Option 1. **VcXsrv**
        - **Enable clipboard**
        - **Enable OpenGL** (if required)
      - **Finish** to start the server.
-
-
-Option 2. **XMing or Cygwin/X**
-   - Launch **XMing** or **Cygwin/X** by executing the `startx` command in the WSL, Git Bash, or Cygwin terminal:
-     ```bash
-     startx
-     ```
-
      
 #### Linux ####
 
