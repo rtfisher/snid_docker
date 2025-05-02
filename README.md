@@ -16,7 +16,7 @@ The current implementation has been verified on macOS Intel and Silicon, but has
 
 [![DOI](https://zenodo.org/badge/907075462.svg)](https://doi.org/10.5281/zenodo.14566451)
 
-Initial implementation by Robert Fisher, with contributions from Robert D. Stein and Krut Patel.
+Initial Docker implementation by Robert Fisher, with contributions from Robert D. Stein and Krut Patel.
 
 # Running Instructions
 
