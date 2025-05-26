@@ -141,6 +141,9 @@ Option 2. **VcXsrv**
      127.0.0.1 being added to access control list
      ```
 
+## PGPLOT Font Issue
+
+PGPLOT has a mechanism for displaying special characters (such as Å or ±) using escapes. Sometimes these do not display properly. This is a known issue -- if it arises, please see https://people.lam.fr/blondin.stephane/software/snid/faq.html#symbols for a simple and quick fix.
 
 ## Manual Container Building and Launching
 
