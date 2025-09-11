@@ -58,7 +58,9 @@ sniduser@4585bce060da:~/snid-5.0$
 ```
 Following this, you will be dropped into the container. To verify SNID is functioning correctly, you can run
 
-```./snid examples/sn2003jo.dat ```
+```
+./snid examples/sn2003jo.dat 
+```
 
 An interactive window similar to the one above should display. If any issues arise, you should follow through the X11 configuration steps below.
 
