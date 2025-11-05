@@ -223,3 +223,98 @@ Very rarely you may need to restart the Docker daemon. On OS/X:
 osascript -e 'quit app "Docker"'
 open /Applications/Docker.app
 ```
+
+## Testing
+
+This project includes a comprehensive test suite to ensure all components work correctly. The test suite validates Docker builds, script functionality, and end-to-end integration.
+
+### Test Suite Overview
+
+The test suite consists of three main components:
+
+1. **Unit Tests** (`tests/test_run_snid.sh`)
+   - Validates run_snid.sh script syntax and structure
+   - Tests OS detection logic
+   - Verifies Docker and X11 configuration code
+   - Checks for proper cleanup and error handling
+
+2. **Docker Build Tests** (`tests/test_docker_build.sh`)
+   - Verifies Docker image builds successfully
+   - Validates PGPLOT installation and configuration
+   - Checks SNID binary compilation
+   - Ensures templates and examples are properly installed
+
+3. **Integration Tests** (`tests/test_integration.sh`)
+   - Tests end-to-end container lifecycle
+   - Validates volume mounting functionality
+   - Verifies environment variables and permissions
+   - Tests SNID utilities (logwave, plotlnw)
+
+### Running Tests Locally
+
+#### Run All Tests
+```bash
+./tests/run_all_tests.sh
+```
+
+#### Run Only Quick Tests (Skip Integration)
+```bash
+./tests/run_all_tests.sh --quick
+```
+
+#### Run Specific Test Suites
+```bash
+# Unit tests only
+./tests/test_run_snid.sh
+
+# Docker build tests only
+./tests/test_docker_build.sh
+
+# Integration tests only
+./tests/test_integration.sh
+```
+
+### Prerequisites for Testing
+
+- Docker must be installed and running
+- The required tarballs (`snid-5.0.tar.gz` and `templates-2.0.tgz`) must be present in the project root
+- Test scripts must be executable (run `chmod +x tests/*.sh` if needed)
+
+### Continuous Integration
+
+This project uses GitHub Actions for continuous integration. The CI workflow automatically runs on:
+- Pushes to `master`, `main`, or `develop` branches
+- Pull requests targeting these branches
+- Manual workflow triggers
+
+The CI pipeline includes:
+- ✓ Quick validation tests (script syntax, file checks)
+- ✓ Docker build verification
+- ✓ Integration testing
+- ✓ Multi-platform compatibility checks (Linux and macOS)
+
+View the CI status and test results in the Actions tab of the GitHub repository.
+
+### Test Output
+
+Tests provide clear pass/fail indicators with color-coded output:
+- ✓ Green indicates passed tests
+- ✗ Red indicates failed tests
+- ⊘ Yellow indicates skipped tests
+
+Each test suite provides a summary showing:
+- Total tests run
+- Number of passed tests
+- Number of failed tests
+- Detailed failure messages (if any)
+
+### Troubleshooting Tests
+
+**Missing Tarballs**: If tests are skipped due to missing tarballs, download them from [Stéphane Blondin's website](https://people.lam.fr/blondin.stephane/software/snid/) and place them in the project root.
+
+**Docker Not Running**: Ensure Docker Desktop is running before executing tests. The test suite will automatically detect if Docker is unavailable and skip relevant tests.
+
+**Permission Errors**: If you encounter permission errors, ensure test scripts are executable:
+```bash
+chmod +x tests/*.sh
+```
