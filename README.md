@@ -17,7 +17,7 @@ The current implementation has been verified on macOS Intel and Silicon and Wind
 [![DOI](https://zenodo.org/badge/907075462.svg)](https://doi.org/10.5281/zenodo.14566451)
 [![CI Status](https://github.com/rtfisher/snid_docker/actions/workflows/ci.yml/badge.svg)](https://github.com/rtfisher/snid_docker/actions/workflows/ci.yml)
 
-Initial Docker implementation by Robert Fisher, with contributions from Robert D. Stein and Krut Patel.
+Initial Docker implementation by Robert Fisher, with contributions from Robert D. Stein and Krut Patel. Continuous integration test suite developed with Claude.
 
 # Running Instructions
 
