@@ -1,5 +1,7 @@
 # SNID-Docker
 
+[![CI Status](https://github.com/rtfisher/snid_docker/actions/workflows/ci.yml/badge.svg)](https://github.com/rtfisher/snid_docker/actions/workflows/ci.yml)
+
 This short Docker file uses a containerized approach to easily enable running the SuperNova IDentification code (Blondin & Tonry, 2007, Tonry & Davis, 1979) on any platform. The requisite PGPLOT library including the X-Windows interface is automatically downloaded and installed inside a Linux container. SNID is configured and built on top of PGPLOT. The container hosts an X11 client which the user can easily connect to via a local X11 server on their desktop. All of this is accomplished by executing a single script, `run_snid.sh`, which automatically detects the system architecture and launches Docker and the X11 server. 
 
 ![SNID Docker Running on OS/X.](/_images/snid_sn2003jo.png)
@@ -15,7 +17,6 @@ Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
 The current implementation has been verified on macOS Intel and Silicon and Windows Home x86-64, but has not yet been tested on Windows Pro or Linux. If you find this project useful, you can cite the Zenodo DOI below.
 
 [![DOI](https://zenodo.org/badge/907075462.svg)](https://doi.org/10.5281/zenodo.14566451)
-[![CI Status](https://github.com/rtfisher/snid_docker/actions/workflows/ci.yml/badge.svg)](https://github.com/rtfisher/snid_docker/actions/workflows/ci.yml)
 
 Initial Docker implementation by Robert Fisher, with contributions from Robert D. Stein and Krut Patel. Continuous integration test suite developed with Claude.
 
