@@ -3,8 +3,6 @@
 # Master Test Runner
 # Runs all test suites for the SNID-Docker project
 
-set -e
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Color codes for output

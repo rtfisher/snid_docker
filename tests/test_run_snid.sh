@@ -3,8 +3,6 @@
 # run_snid.sh Unit Tests
 # Tests the functionality of the run_snid.sh script without actually running Docker
 
-set -e
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/test_utils.sh"
 

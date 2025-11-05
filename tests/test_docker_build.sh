@@ -3,8 +3,6 @@
 # Docker Build Validation Tests
 # Tests that verify the Docker image builds correctly and contains all required components
 
-set -e
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/test_utils.sh"
 
