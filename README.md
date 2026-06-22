@@ -58,13 +58,13 @@ Configuring XQuartz to allow connections from Docker...
 Running Docker container 'snid-app'...
 sniduser@4585bce060da:~/snid-5.0$
 ```
-Following this, you will be dropped into the container. To verify SNID is functioning correctly, you can run
+Following this, you will be dropped into the container. To verify SNID is functioning correctly, you can run in the container
 
 ```
 ./snid examples/sn2003jo.dat 
 ```
 
-An interactive window similar to the one above should display. If any issues arise, you should follow through the X11 configuration steps below.
+An interactive window similar to the one above should display. If any issues arise with the display, you should follow through the X11 configuration steps below.
 
 You can optionally mount a local directory to the container to transfer files in and out. For example, to mount the directory `/path/to/local/data` to the container, run:
 
@@ -72,7 +72,7 @@ You can optionally mount a local directory to the container to transfer files in
 ./run_snid.sh /path/to/local/data
 ```
 
-The container will automatically copy the contents of the local directory to the container directory `/home/sniduser/snid-5.0/localmount`. You can then access these files from within the container.
+The container will automatically copy the contents of the local directory to the container directory `/home/sniduser/snid-5.0/localmount`. You can then access these files from within the container. This cross-mounting mechanism between the container and your local system directory is extremely convenient if you have spectra you would like to bring into the container, or SNID plots or results you wish to bring back to your system.
    
 ### X11 Configuration
 
@@ -197,7 +197,7 @@ This is a known issue which you can easily fix by editing `~/.docker/config.json
 ### File Transfer
 
 #### Option 1: Using Mounted Directory
-The easiest way to transfer files from within the container back to the system is by using a directory mount. SNID-Docker mounts the container directory `desktop` to the directory `snid` on your system desktop. Any files you copy into the `desktop` folder in the container will automatically be copied to the `snid` folder and persist even after the Docker container is shut down. Similarly, any system files which are copied to `snid` on your system desktop will automatically appear within the mounted `desktop` folder in the container.
+The easiest way to transfer files from within the container back to the system is by using a directory mount as described above. SNID-Docker mounts the container directory `desktop` to the directory `snid` on your system desktop. Any files you copy into the `desktop` folder in the container will automatically be copied to the `snid` folder and persist even after the Docker container is shut down. Similarly, any system files which are copied to `snid` on your system desktop will automatically appear within the mounted `desktop` folder in the container.
 
 #### Option 2: Using Docker cp
 To copy files from a subdirectory in the container to your system desktop, you could run:
