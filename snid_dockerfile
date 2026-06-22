@@ -85,7 +85,10 @@ COPY --chown=sniduser:snidgroup Makefile /home/sniduser/snid-5.0/Makefile
 WORKDIR /home/sniduser/snid-5.0
 
 # Edit SNID source files: snidmore.f and snid.inc
-RUN sed -i "s|tempdir='INSTALL_DIR/snid-5.0/templates/'|tempdir='/home/sniduser/snid-5.0/templates-2.0/'|" source/snidmore.f && \
+RUN sed -i \
+    "s|/home/sblondin/snid/snid-5.0/templates-2.0/|/home/sniduser/snid-5.0/templates-2.0/|" \
+    source/snidmore.f && \
+    grep -n "tempdir=" source/snidmore.f && \
     sed -i "s|parameter (MAXPPT = .*|parameter (MAXPPT = 50000)|" source/snid.inc && \
     sed -i "s|parameter (MAXTEMP = .*|parameter (MAXTEMP = 10000)|" source/snid.inc
 
