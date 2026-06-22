@@ -1,0 +1,88 @@
+name: Upstream Canary - Live Tarball Test
+
+# Periodically rebuilds and tests SNID-Docker against the tarballs that are
+# CURRENTLY published on Stephane Blondin's site, rather than a pinned/static
+# copy. A static copy can never catch upstream re-packaging (the exact failure
+# behind issue #4) -- only fetching the live files does.
+#
+# Pass/fail policy (deliberate):
+#   * The integration suite (tests/test_integration.sh) is the ONLY thing that
+#     decides green vs. red. If it passes, the run is GREEN -- even if upstream
+#     changed since the last run.
+#   * A changed upstream tarball is reported as an informational annotation only
+#     and never fails the run.
+#   * If upstream is unreachable, the run is a soft pass (a transient network /
+#     availability issue is not a code failure).
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'   # every Monday 06:00 UTC
+  workflow_dispatch:        # plus a manual "Run workflow" button
+
+permissions:
+  contents: read
+
+jobs:
+  canary:
+    name: Build & test against current upstream tarballs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download current tarballs from upstream
+        id: download
+        run: |
+          BASE="https://people.lam.fr/blondin.stephane/software/snid"
+          ok=true
+          for f in snid-5.0.tar.gz templates-2.0.tgz; do
+            echo "Downloading $f ..."
+            if ! wget --tries=3 --timeout=300 -O "$f" "$BASE/$f" || [ ! -s "$f" ]; then
+              echo "::warning::Could not download $f from $BASE/$f. Treating as a transient network/availability issue, not a build failure."
+              rm -f "$f"
+              ok=false
+            fi
+          done
+          if [ "$ok" = true ]; then
+            echo "downloaded=true" >> "$GITHUB_OUTPUT"
+            echo "Both tarballs downloaded."
+          else
+            echo "downloaded=false" >> "$GITHUB_OUTPUT"
+            echo "One or more downloads unavailable; build/test will be skipped (soft pass)."
+          fi
+          # This step never fails the job; download problems are a soft pass.
+          exit 0
+
+      - name: Compare against last-known upstream hashes (informational only)
+        if: steps.download.outputs.downloaded == 'true'
+        run: |
+          # This step NEVER changes the run's pass/fail status. It only annotates
+          # whether the published tarballs differ from .github/upstream-hashes.txt.
+          baseline=".github/upstream-hashes.txt"
+          for f in snid-5.0.tar.gz templates-2.0.tgz; do
+            cur=$(sha256sum "$f" | awk '{print $1}')
+            prev=$(grep -E "  $f\$" "$baseline" 2>/dev/null | awk '{print $1}')
+            if [ -z "$prev" ]; then
+              echo "::notice::No baseline hash recorded for $f. Current upstream sha256=$cur"
+            elif [ "$cur" != "$prev" ]; then
+              echo "::warning::Upstream $f CHANGED since baseline (was=$prev now=$cur). Informational only -- this run is judged solely by the integration suite. If the suite is green, update .github/upstream-hashes.txt to $cur."
+            else
+              echo "$f unchanged since baseline ($cur)."
+            fi
+          done
+          exit 0
+
+      # The ONLY pass/fail gate. If this suite passes, the canary is GREEN,
+      # regardless of whether upstream changed. If it fails, the canary is RED.
+      - name: Run integration suite against current upstream
+        if: steps.download.outputs.downloaded == 'true'
+        run: |
+          chmod +x tests/*.sh
+          ./tests/test_integration.sh
+
+      - name: Note unavailable upstream (soft pass)
+        if: steps.download.outputs.downloaded == 'false'
+        run: |
+          echo "Upstream tarballs were not reachable this run."
+          echo "No build/test executed; this is not treated as a failure."

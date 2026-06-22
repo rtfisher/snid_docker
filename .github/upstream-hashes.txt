@@ -1,0 +1,15 @@
+# Baseline SHA-256 hashes of the upstream SNID tarballs.
+#
+# Used ONLY by the upstream canary workflow (.github/workflows/upstream-canary.yml)
+# to annotate whether the files served at
+#   https://people.lam.fr/blondin.stephane/software/snid/
+# have changed since this baseline was recorded. This is INFORMATIONAL ONLY:
+# a changed hash never fails the canary -- only a failing integration suite does.
+#
+# The values below are the maintainer's current local working copies. When the
+# canary reports that upstream now differs from these, update this file (after a
+# green canary run) to the new hashes so the next run compares against reality.
+#
+# Format: <sha256>  <filename>
+22199803971fdd1bb394a550e81da661bd315224827373aae67408166873ec5c  snid-5.0.tar.gz
+0771709e7ba50a74d9bfee20ac0058274e1f102710595eb13055bdf8089e77f3  templates-2.0.tgz
