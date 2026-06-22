@@ -249,12 +249,62 @@ test_plotlnw_utility() {
 test_templates_accessible() {
     echo "Testing template accessibility..."
 
-    local template_count=$(docker run --rm "$IMAGE_NAME" bash -c "ls templates-2.0/*.dat 2>/dev/null | wc -l" || echo "0")
+    # SNID templates are .lnw files (logarithmically-rebinned spectra).
+    local template_count=$(docker run --rm "$IMAGE_NAME" bash -c "ls templates-2.0/*.lnw 2>/dev/null | wc -l" || echo "0")
 
     if [ "$template_count" -gt 0 ]; then
         print_result "Template files are accessible ($template_count templates found)" "PASS"
     else
         print_result "Template files are accessible" "FAIL"
+    fi
+}
+
+# Test 13: Template directory path is correctly patched (regression test for issue #4)
+#
+# The Dockerfile rewrites the hardcoded `tempdir` in source/snidmore.f to point
+# at the templates installed in the image. If that substitution fails to match
+# (e.g. a newer snid-5.0.tar.gz ships a different default path), the compiled
+# binary looks for templates at a stale absolute path and aborts at runtime with
+# "Cannot open file '.../templates-2.0/templist': No such file or directory".
+# This test reproduces that failure mode directly.
+# See: https://github.com/rtfisher/snid_docker/issues/4
+test_template_path_resolution() {
+    echo "Testing template path resolution (issue #4 regression)..."
+
+    # The file SNID reads first must exist at the patched tempdir location.
+    if docker run --rm "$IMAGE_NAME" bash -c "test -f templates-2.0/templist"; then
+        print_result "templist exists in templates-2.0 directory" "PASS"
+    else
+        print_result "templist exists in templates-2.0 directory" "FAIL"
+    fi
+
+    # The compiled binary must resolve templates to the in-container path, not a
+    # leftover build-host path baked into the source.
+    local tempdir_path=$(docker run --rm "$IMAGE_NAME" bash -c "grep -m1 \"^[[:space:]]*tempdir='\" source/snidmore.f")
+    assert_contains "$tempdir_path" "/home/sniduser/snid-5.0/templates-2.0/" \
+        "Compiled tempdir points to in-container templates path"
+
+    # End-to-end: run Jannis's exact example command and confirm SNID reads the
+    # template library instead of aborting on a stale template path. With no
+    # stdin, SNID loads all templates, prints its correlation result, then hits
+    # EOF on its interactive redshift prompt and exits -- that prompt/EOF is
+    # expected here and unrelated to issue #4. We assert only that the templates
+    # were located and loaded. The in-container timeout guards against hangs.
+    local snid_output=$(docker run --rm "$IMAGE_NAME" bash -c "timeout 120 ./snid examples/sn2003jo.dat 2>&1" || true)
+
+    if [[ "$snid_output" == *"templist"*"No such file"* ]] || \
+       [[ "$snid_output" == *"Cannot open file"*"templates-2.0"* ]]; then
+        # The issue #4 failure mode: template path baked into the binary is wrong.
+        print_result "SNID resolves templates without path error" "FAIL"
+        echo "  SNID output:"
+        echo "$snid_output" | head -10 | sed 's/^/  /'
+    elif [[ "$snid_output" == *"Reading template files"* && "$snid_output" == *"Loaded"* ]]; then
+        print_result "SNID resolves templates without path error" "PASS"
+    else
+        # Neither the known error nor the success markers -- surface for diagnosis.
+        print_result "SNID resolves templates without path error" "FAIL"
+        echo "  Unexpected SNID output:"
+        echo "$snid_output" | head -10 | sed 's/^/  /'
     fi
 }
 
@@ -272,6 +322,7 @@ main() {
     test_logwave_utility
     test_plotlnw_utility
     test_templates_accessible
+    test_template_path_resolution
 
     print_summary
 }

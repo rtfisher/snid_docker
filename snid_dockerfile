@@ -85,7 +85,16 @@ COPY --chown=sniduser:snidgroup Makefile /home/sniduser/snid-5.0/Makefile
 WORKDIR /home/sniduser/snid-5.0
 
 # Edit SNID source files: snidmore.f and snid.inc
-RUN sed -i "s|tempdir='INSTALL_DIR/snid-5.0/templates/'|tempdir='/home/sniduser/snid-5.0/templates-2.0/'|" source/snidmore.f && \
+#
+# The tempdir assignment in snidmore.f hardcodes the template directory. Its
+# default value has varied between releases of snid-5.0.tar.gz (older copies
+# ship the 'INSTALL_DIR/snid-5.0/templates/' placeholder, while the current
+# download bakes in the maintainer's own absolute path), so we replace whatever
+# is between the quotes rather than matching a single literal. The anchor
+# ^[[:space:]]*tempdir=' targets only the executable assignment, leaving the
+# commented example and the option-parsing/help lines untouched.
+RUN sed -i "s|^\([[:space:]]*\)tempdir='[^']*'|\1tempdir='/home/sniduser/snid-5.0/templates-2.0/'|" source/snidmore.f && \
+    grep -q "tempdir='/home/sniduser/snid-5.0/templates-2.0/'" source/snidmore.f && \
     sed -i "s|parameter (MAXPPT = .*|parameter (MAXPPT = 50000)|" source/snid.inc && \
     sed -i "s|parameter (MAXTEMP = .*|parameter (MAXTEMP = 10000)|" source/snid.inc
 
