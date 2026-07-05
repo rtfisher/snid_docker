@@ -16,7 +16,7 @@ Tonry, J. L. & Davis, M. 1979. AJ, 84, 1511
 
 The current implementation has been verified on macOS Intel and Silicon and Windows Home x86-64, but has not yet been tested on Windows Pro or Linux. If you find this project useful, you can cite the Zenodo DOI below.
 
-[![DOI](https://zenodo.org/badge/907075462.svg)](https://doi.org/10.5281/zenodo.14566451)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14566451.svg)](https://doi.org/10.5281/zenodo.14566451)
 
 Initial Docker implementation by Robert Fisher, with contributions from Robert D. Stein and Krut Patel. Continuous integration test suite developed with Claude.
 
